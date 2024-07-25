@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadeaux</title>
+    <!-- <link rel="icon" type="image/png" href="img\image.png"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @property --flap-rotation {
+            syntax: "<angle>";
+            inherits: false;
+            initial-value: 0deg;
+        }
+        @property --progress {
+            syntax: "<percentage>";
+            inherits: false;
+            initial-value: 20%;
+        }
+        @property --text {
+            syntax: "<number>";
+            inherits: false;
+            initial-value: 0.0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            height: 1000vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .text-to-show {
+            animation: reveal-text ease both;
+            animation-timeline: scroll();
+            animation-range: 80%;
+            opacity: var(--text);
+        }
+        .envelope {
+            container: envelope / inline-size;
+            perspective: 1000px;
+        }
+        .flap {
+            clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            rotate: x var(--flap-rotation);
+            transform-origin: 50% 0;
+            animation: animate-flap ease both;
+            animation-timeline: scroll();
+            animation-range: 0 60%;
+            z-index: 4;
+            position: relative;
+        }
+        .face {
+            clip-path: polygon(50% 35%, 100% 0, 100% 100%, 0 100%, 0 0);
+        }
+        .image-content {
+            position: absolute;
+            width: 50%;
+            max-height: 80%;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            
+            transform: translateY(var(--progress)) translateX(-50%);
+            animation: show-image ease both;
+            animation-timeline: scroll();
+            animation-range: 60%;
+            z-index: 3;
+        }
+        @keyframes animate-flap {
+            from {
+                --flap-rotation: 0deg;
+            }
+            99% {
+                z-index: 4
+            }
+            100% {
+                --flap-rotation: 180deg;
+                z-index: 1;
+            }
+        }
+        @keyframes show-image {
+            from {
+                --progress: 20%;
+            }
+            to {
+                --progress: -90%;
+            }
+        }
+        @keyframes reveal-text {
+            from {
+                --text: 0.0;
+            }
+            to {
+                --text: 1.0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <h1 class="text-[clamp(20px,5vmin,100px)] text-center pt-4">Scroll 😉</h1>
+    <div class="fixed inset-0 grid place-items-center">
+        <div class="envelope relative w-[60vmin] aspect-video bg-slate-200 shadow-xl">
+            <div class="flap bg-slate-300"></div>
+            <img src="img/CC.PNG" alt="azouz" class="image-content">
+            <div class="face bg-slate-100 inset-0 absolute z-[3]"></div>
+            <p class="text-to-show relative z-10 pt-[6cqw] text-center text-[5cqw] text-red-400">I LOVE YOU 😍</p>
+        </div>  
+    </div>
+</body>
+</html>
