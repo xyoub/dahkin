@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadeaux</title>
+    <!-- <link rel="icon" type="image/png" href="img\image.png"> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @property --flap-rotation {
@@ -25,11 +26,9 @@
             box-sizing: border-box;
         }
         body {
-            height: 100vh;
+            height: 1000vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            overflow-y: scroll;
-            scroll-behavior: smooth;
         }
         .text-to-show {
             animation: reveal-text ease both;
@@ -64,6 +63,7 @@
             left: 50%;
             top: 0;
             bottom: 0;
+            
             transform: translateY(var(--progress)) translateX(-50%);
             animation: show-image ease both;
             animation-timeline: scroll();
@@ -75,7 +75,7 @@
                 --flap-rotation: 0deg;
             }
             99% {
-                z-index: 4;
+                z-index: 4
             }
             100% {
                 --flap-rotation: 180deg;
@@ -108,7 +108,7 @@
             <img src="img/CC.PNG" alt="azouz" class="image-content">
             <div class="face bg-slate-100 inset-0 absolute z-[3]"></div>
             <p class="text-to-show relative z-10 pt-[6cqw] text-center text-[5cqw] text-red-400">I LOVE YOU 😍</p>
-        </div>
+        </div>  
     </div>
 </body>
 </html>
